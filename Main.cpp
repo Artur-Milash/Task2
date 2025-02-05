@@ -8,4 +8,10 @@ int main()
 
 	a.swap(b);
 	std::cout << "a: " << a.to_char() << " b: " << b.to_double() << std::endl;
+
+	Any_type c;
+	int ia = 5;
+	void* ptr = &ia;
+	c = ptr;
+	std::cout << c.to_int();
 }

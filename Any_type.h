@@ -1,6 +1,8 @@
 #pragma once
 #include <typeinfo>
 
+//Simple library to store any type (union implementation)
+
 class Any_type {
 private:
 	const enum Union_types {
@@ -72,12 +74,17 @@ public:
 
 	~Any_type();
 
+	//destroy stored value
 	void destroy();
 
+	//get type of stored value
 	unsigned short get_type() const;
 
+	//swap two object with respect to types
 	void swap(Any_type&);
 
+	/* different methods to get needed type of stored value
+	* (it will cause bad_cast if types aren't equal) */
 	bool to_bool() const;
 
 	char to_char() const;
@@ -98,6 +105,7 @@ public:
 	float to_float() const;
 	double to_double() const;
 	
+	//deep copy assignment operators
 	void operator=(const bool&);
 
 	void operator=(const char&);
@@ -114,4 +122,10 @@ public:
 
 	void operator=(const float&);
 	void operator=(const double&);
+
+	//restricted methods
+	void operator=(const void*) = delete;
+	void operator=(const std::nullptr_t) = delete;
+	Any_type(const void*) = delete;
+	Any_type(const std::nullptr_t) = delete;
 };

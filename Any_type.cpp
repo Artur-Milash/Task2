@@ -340,7 +340,7 @@ short Any_type::to_short() const {
 	throw std::bad_cast();
 }
 unsigned short Any_type::to_ushort() const {
-	if (type == SHORT) {
+	if (type == UNSIGNED_SHORT) {
 		return *inner_union.ush;
 	}
 	throw std::bad_cast();
